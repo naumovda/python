@@ -36,9 +36,9 @@ def nonzero_col_count(matrix):
         matrix: array
             Input array (rectangular)
     """
-    columns = (matrix != 0).sum(0)
-    
-    return sum([1 for i,x in enumerate(columns) if x == matrix.shape[1]])
+    #columns = (matrix != 0).sum(0)
+    #return sum([1 for i,x in enumerate(columns) if x == matrix.shape[1]])
+    return sum([1 for row in matrix.T if row.prod()!=0])
 
 # 2.2 fix!
 def row_chr(row):
