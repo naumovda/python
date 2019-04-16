@@ -512,15 +512,17 @@ def my_test():
     #print(col_nonneg_sum(f))
     #print(cdiag_min_sum(f, False))
 
-    g = [[-9, -8, -1], [6, -3, 8], [-2, -6, -4]]
+    g = [[-9, -9, -1], [-7, -3, 8], [-1, -6, -4]]
     #print(row_equals_col(g))
     #print(sum_zero_rows(g))
     #print(col_chr(g, 0))
-    h = sort_by_col_chr(g)
-    #print(sort_by_col_chr(g))
-    print(sum_cols_neg(g))
+    #h = sort_by_col_chr(g)
+    print(g)
+    #print(h)
+    print(sort_by_col_chr(g))
+    #print(sum_cols_neg(g))
     #print(row_less_mean(g, 0))
-    print(id(g), id(h))
+    #print(id(g), id(h))
 
 if __name__ == "__main__":
     my_test()

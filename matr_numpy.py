@@ -105,7 +105,7 @@ def row_max_series(matrix):
         list:
             List of numbers of rows with longest series of identical elements
     """
-    ser_len = [series_max_len(row) for i,row in enumerate(matrix)]
+    ser_len = [series_max_len(row) for row in  matrix]
     
     max_len = max(ser_len) 
     
@@ -175,12 +175,19 @@ def row_equals_col(matrix):
         matrix: array
             Input square matrix
     '''
+    print(matrix)
+    
     cmp = lambda row, col, size: all([row[k]==col[k] for k in range(size)])
     
     size = matrix.shape[0]
     
+    #for k in range(size):
+    #    print(k)
+    #    print(matrix[k])
+    #    print(matrix.T[k])
+            
     return [k for k in range(size) \
-            if cmp(matrix[k][:], matrix[:][k].T, size)]
+            if cmp(matrix[k], matrix.T[k], size)]
 
 # 6.2
 def sum_zero_rows(matrix):
@@ -190,8 +197,8 @@ def sum_zero_rows(matrix):
         matrix: array
             Input square matrix
     '''
-    f = lambda row: all([elem==0 for elem in row])
-     
+    f = lambda row: any([elem==0 for elem in row])   
+   
     return sum([sum(row) for row in matrix if f(row)])
 
 # 7.1 copy of 5.1
@@ -221,12 +228,12 @@ def sort_by_col_chr(matrix):
     '''
     ch = lambda elem: (elem < 0) and (elem % 2 != 0)
     
-    chrc = lambda col: sum([elem for elem in col if ch(col)])
+    chrc = lambda col: sum([abs(elem) for elem in col if ch(elem)])
     
     size = len(matrix[0])
     for i in range(0, size - 1):
         for j in range(i + 1, size):
-            if chrc(matrix[:][i]) > chrc(matrix[:][j]):
+            if chrc(matrix.T[i]) > chrc(matrix.T[j]):
                 swp_cols(matrix, i, j)
     return matrix
 
@@ -240,7 +247,7 @@ def sum_cols_neg(matrix):
     '''
     ch = lambda elem: (elem < 0)    
     
-    chrc = lambda col: any([elem for elem in col if ch(col)])
+    chrc = lambda col: any([elem for elem in col if ch(elem)])
 
     return sum([sum(col) for col in matrix.T if chrc(col)])
 
@@ -320,14 +327,15 @@ def my_test():
     #print(cdiag_min_sum(f))
     
     g = np.ndarray(shape=(3,3), dtype=int, \
-                   buffer=np.array([[-9, -8, -1], [6, -3, 8], [-2, -6, -4]]))    
+                   buffer=np.array([[-9, -8, +1], [+8, 0, +1], [-1, -6, +4]]))    
     #print(row_equals_col(g))
     
-    #print(sum_zero_rows(g))    
+    #print(sum_zero_rows(g)) 
+    print(g)
     #print(sort_by_col_chr(g))
-    #print(sum_cols_neg(g))
+    print(sum_cols_neg(g))
     
-    print(row_less_mean(g, 0))
+    #print(row_less_mean(g, 0))
 
 if __name__ == "__main__":
     my_test()
