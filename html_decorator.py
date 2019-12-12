@@ -28,7 +28,7 @@ class tag_decorator(tag):
         self._wrapped = wrapped
 
     def name(self):
-        self._wrapped.name()
+        return self._wrapped.name()
 
     def __str__(self):
         raise NotImplementedError
